@@ -1,0 +1,13 @@
+Script started on 2026-02-15 01:14:16+02:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="92" LINES="49"]
+docker exec -it ee bash
+redis-cli
+KEYS *
+SET added_todos 9001
+KEYS *
+GET added_todos
+FLUSHDB
+KEYS *
+GET added_todos
+exit
+exit
+Script done on 2026-02-15 01:44:41+02:00 [COMMAND_EXIT_CODE="0"]
