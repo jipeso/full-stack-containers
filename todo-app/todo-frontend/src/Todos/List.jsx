@@ -1,49 +1,27 @@
-import React from 'react'
+import PropTypes from 'prop-types'
+import Todo from './Todo'
 
 const TodoList = ({ todos, deleteTodo, completeTodo }) => {
-  const onClickDelete = (todo) => () => {
-    deleteTodo(todo)
-  }
-
-  const onClickComplete = (todo) => () => {
-    completeTodo(todo)
-  }
-
   return (
     <>
-      {todos.map(todo => {
-        const doneInfo = (
-          <>
-            <span>This todo is done</span>
-            <span>
-              <button onClick={onClickDelete(todo)}> Delete </button>
-            </span>
-          </>
-        )
-
-        const notDoneInfo = (
-          <>
-            <span>
-              This todo is not done
-            </span>
-            <span>
-              <button onClick={onClickDelete(todo)}> Delete </button>
-              <button onClick={onClickComplete(todo)}> Set as done </button>
-            </span>
-          </>
-        )
-
-        return (
-          <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '70%', margin: 'auto' }}>
-            <span>
-              {todo.text} 
-            </span>
-            {todo.done ? doneInfo : notDoneInfo}
-          </div>
-        )
-      }).reduce((acc, cur) => [...acc, <hr />, cur], [])}
+      {todos.map((todo, index) => (
+        <div key={todo.id}>
+          <Todo
+            todo={todo}
+            deleteTodo={deleteTodo}
+            completeTodo={completeTodo}
+          />
+          {index < todos.length - 1 && <hr />}
+        </div>
+      ))}
     </>
   )
+}
+
+TodoList.propTypes = {
+  todos: PropTypes.array.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  completeTodo: PropTypes.func.isRequired
 }
 
 export default TodoList
