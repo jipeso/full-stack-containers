@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20
 
 WORKDIR /usr/src/app
 
@@ -8,4 +8,4 @@ RUN npm ci
 
 USER node
 
-CMD npm start
+CMD ["npm", "start"]

@@ -8,8 +8,14 @@ const TodoView = () => {
   const [todos, setTodos] = useState([])
 
   const refreshTodos = async () => {
-    const { data } = await axios.get('/todos')
-    setTodos(data)
+    try {
+      const { data } = await axios.get('/todos')
+      if (Array.isArray(data)) {
+        setTodos(data)
+      }
+    } catch (error) {
+      console.error('Failed to get todos', error);
+    }
   }
 
   useEffect(() => {

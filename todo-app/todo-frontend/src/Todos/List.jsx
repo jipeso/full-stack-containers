@@ -5,7 +5,7 @@ const TodoList = ({ todos, deleteTodo, completeTodo }) => {
   return (
     <>
       {todos.map((todo, index) => (
-        <div key={todo.id}>
+        <div key={todo._id}>
           <Todo
             todo={todo}
             deleteTodo={deleteTodo}
